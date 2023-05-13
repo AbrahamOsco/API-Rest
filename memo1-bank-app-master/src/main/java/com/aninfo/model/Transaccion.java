@@ -4,7 +4,7 @@ import javax.persistence.*;
 @Entity
 public class Transaccion {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTransaccion;
     private Long cbu;
     private Double valor;
