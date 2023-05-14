@@ -1,6 +1,7 @@
 package com.aninfo.service;
 
 import com.aninfo.exceptions.InvalidTransactionTypeException;
+import com.aninfo.exceptions.NotFoundCBUExcepction;
 import com.aninfo.model.Transaccion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,11 @@ public class TransaccionService {
     }
 
     public List<Transaccion> findByCbu(Long cbu){
-        return transaccionRepository.findByCbu(cbu);
+        List<Transaccion> listaTransacciones =  transaccionRepository.findByCbu(cbu);
+        if( listaTransacciones.size() == 0 ) {
+            throw new NotFoundCBUExcepction("Error CBU de la cuenta no existe ");
+        }
+        return listaTransacciones;
     }
 
     public void save(Transaccion unaTransaccion){
