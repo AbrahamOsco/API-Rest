@@ -37,7 +37,7 @@ public class TransaccionService {
     }
 
     public Optional<Transaccion> findByIdTransaccion(Long idTransaccion ){
-        return transaccionRepository.findById(idTransaccion);
+        return Optional.ofNullable( transaccionRepository.findByIdTransaccion(idTransaccion) );
     }
 
     public List<Transaccion> findByCbu(Long cbu){
