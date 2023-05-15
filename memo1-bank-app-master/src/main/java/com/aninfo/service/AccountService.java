@@ -41,6 +41,10 @@ public class AccountService {
     public Account withdraw(Long cbu, Double sum) {
         Account account = accountRepository.findAccountByCbu(cbu);
 
+        if (sum <= 0) {
+            throw new DepositNegativeSumException("Cannot deposit negative sums");
+        }
+
         if (account.getBalance() < sum) {
             throw new InsufficientFundsException("Insufficient funds");
         }
